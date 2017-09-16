@@ -15,7 +15,7 @@
  *
  */
 definition(
-    name: "Smoke Alarm Monitor",
+    name: "Smoke Alarm Monitor Manager",
     namespace: "rlipenta",
     author: "Ross Lipenta",
     description: "Monitor sound smoke alarm",
@@ -45,7 +45,7 @@ def initialize() {
 /**
  * Returns the SSDP URN for discovery
  */
-def searchTarget() { return "urn:schemas-upnp-org:device:RmlAlarmMonitorSensor:1" } 
+def searchTarget() { return "urn:schemas-upnp-org:device:RmlAlarmMonitorSensor:1" }
 
 /**
  * Generates the select device UI
@@ -55,13 +55,13 @@ def searchTarget() { return "urn:schemas-upnp-org:device:RmlAlarmMonitorSensor:1
 def selectDevice() {
     log.trace "Executing 'selectDevice'"
     def refreshInterval = 3
-    
+
     ssdpSubscribe()
-    
+
     ssdpDiscover()
-    
+
     def deviceMap = getDeviceMap()
-    
+
     return dynamicPage(name: "selectDevice", title: "", nextPage: "", refreshInterval: refreshInterval, install: true, uninstall: true) {
             section("") {
                 input ("selectDevice", "enum", required: false, title: "Select monitor (${deviceMap.size() ?: 0} found)", multiple: false, options: deviceMap)
@@ -144,7 +144,7 @@ def ssdpHandler(evt) {
                 def children = getChildDevices()
                 children.each {
                     if (it.getDeviceDataByName("ssdpUSN") == parsedEvent.ssdpUSN) {
-                        it.updateDataValue("ip", ip)                                                
+                        it.updateDataValue("ip", ip)
                         it.updateDataValue("port", port)
                     }
                 }
