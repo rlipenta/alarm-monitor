@@ -31,7 +31,7 @@
 #define WLAN_SSID       "YOUR_SSID" //change to your Wifi SSID
 #define WLAN_PASS       "YOUR_WIFI_PASSWORD" //change to your Wifi Password
 #define SERVER_PORT     80
-#define MDNS_NAME       "alarm-monitor";
+#define MDNS_NAME       "alarm-monitor"
 
 MDNSResponder mdns;
 ESP8266WebServer server(SERVER_PORT);
@@ -61,7 +61,7 @@ void setup() {
   DEBUG_OUTPUT.print("  Connecting to WiFi...");
   connectToNetwork();
   if (mdns.begin(MDNS_NAME, WiFi.localIP())) {
-    DEBUG_OUTPUT.println("    MDNS responder started. [" + MDNS_NAME + "]");
+    DEBUG_OUTPUT.println("    MDNS responder started. [" + String(MDNS_NAME) + "]");
     mdns.addService("http", "tcp", SERVER_PORT);
   }
 
