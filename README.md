@@ -58,3 +58,15 @@ platform for this - it simply means the documentation suffers from the depth
 necessary for a seasoned software developer to work with the platform easily. It
 required a substantial amount of trial and error to figure out all of the moving
 parts and pieces to get this far.
+
+---
+
+## Circuit Design
+
+The circuit leverages the [Adafruit Feather HUZZAH with ESP8266 WiFi](https://www.adafruit.com/product/3046) board and an [SPW 2430 microphone IC](https://www.adafruit.com/product/2716). In a breadboard the circuit is wired with just three jumpers:
+
+1. `3V` on the HUZZAH to the `Vin` on the microphone
+1. `GND` (Ground) to the `GND` on the microphone
+1. `ADC` (Analog) to the `DC` on the microphone
+
+![circuit design](Documentation/images/alarm-monitor_bb.png)
